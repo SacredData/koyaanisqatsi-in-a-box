@@ -16,5 +16,5 @@ Say you make non-traditional music and want to demonstrate its viability as the 
 
 Well, fuck that shizz! The Society of Motion Picture & Television Engineers didn't invent their timecode for nothing! Let's do it a different way, this time with some chuztpah!
 
-transmogrifun's approach is different. We obliterate that comfy 29.97fps NTSC frame rate your video used to have, and divide the video's PTS by a considerable degree, making your video play back much faster in the process. Better yet, the video will run the same length as the audio after we're done processing! And it [looks](https://grathwohl.me/sessions/drunkendystopia.mp4) [totally](https://grathwohl.me/sessions/cmyk-tyler-inverted.mp4)
-[cool](https://grathwohl.me/sessions/ascensiontostellarriver.mp4) when you watch it back.
+transmogrifun's approach is different. We obliterate that comfy 29.97fps NTSC frame rate your video used to have, and divide the video's PTS by a considerable degree, making your video play back much faster in the process. Better yet, the video will run the same length as the audio after we're done processing! And it [looks](https://grathwohl.me/sessions/dd.mov) [totally](https://grathwohl.me/sessions/cmyk-tyler-inverted.mp4)
+[cool](https://grathwohl.me/sessions/atsr.mov) when you watch it back.
