@@ -7,12 +7,15 @@ async function constructFFmpegCommand(ratios, files, fps) {
         '-map 0:v:0',
         '-map 1:a:0',
         `-r ${(fps * ratios.durRatio > 60 ? 60 : fps * ratios.durRatio)}`,
+        '-c:a alac',
         '-c:v libx264',
         '-b:v 15M',
         '-tune:v film',
         '-preset:v veryfast',
-        '-vsync -1',
-        '-threads 2'
+        '-vsync 1',
+        '-af aresample=async=1',
+        '-threads 2',
+        '-movflags', '+faststart+cgop'
     ]).videoFilters([
         `setpts=${ratios.ptsRatio}*PTS`,
     ])
