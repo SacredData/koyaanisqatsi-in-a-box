@@ -2,6 +2,8 @@
 
 You have a video, you have an audio, you have an MKV container. transmogrifun is a fun way to mess with that video's PTS and frame rate to make that audio track feel more comfortable in Mr. Matroska's home.
 
+Basically, this is "[Koyaanisqatsi](https://www.imdb.com/title/tt0085809/)-in-a-Box" - except `transmogrifun` doesn't force you to settle with hacks like Philip Glass.
+
 ## OK What Do?
 
 Just download the release. Don't bother with `npm` and all that nonsense.
