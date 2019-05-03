@@ -17,7 +17,7 @@ async function constructFFmpegCommand(ratios, files, fps) {
         '-threads 2',
         '-movflags', '+faststart+cgop'
     ]).videoFilters([
-        `setpts=${ratios.ptsRatio}*PTS`,
+        `setpts=${ratios.ptsRatio}*PTS,minterpolate`,
     ])
     .output('test.mkv')
     .on('start', (cmd) => console.log(cmd))
