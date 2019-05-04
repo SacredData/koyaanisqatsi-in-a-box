@@ -1,6 +1,12 @@
 # .cfs
 .cfs
 
+*.mp3
+*.aac
+*.opus
+
+build/*
+
 ffmpeg/*
 
 *.264
