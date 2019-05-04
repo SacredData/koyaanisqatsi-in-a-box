@@ -1,25 +1,33 @@
 const ffmpeg = require('fluent-ffmpeg')
 const path = require('path')
 
-async function constructFFmpegCommand(ratios, files, fps) {
+async function constructFFmpegCommand(ratios, files, fps, opts) {
     const ffmpegCmd = ffmpeg(files.video).input(files.audio)
+    ffmpegCmd.inputOptions([
+        '-hwaccel', 'nvdec'
+    ])
     ffmpegCmd.outputOptions([
         '-map 0:v:0',
         '-map 1:a:0',
         `-r ${(fps * ratios.durRatio > 60 ? 60 : fps * ratios.durRatio)}`,
-        '-c:a alac',
-        '-c:v libx264',
-        '-b:v 15M',
-        '-tune:v film',
-        '-preset:v veryfast',
-        '-vsync 1',
+        '-c:a flac',
+        '-c:v', `${opts.gpu ? 'h264_nvenc' : 'libx264'}`,
+        '-b:v 10M',
+        '-maxrate', '20M',
+        '-crf', '18',
+        '-crf_max', '34',
+        '-preset:v', `${opts.gpu ? 'fast' : 'ultrafast'}`,
+        '-vsync -1',
         '-af aresample=async=1',
-        '-threads 2',
-        '-movflags', '+faststart+cgop'
+        '-threads 8',
+        '-movflags', '+faststart+negative_cts_offsets',
+        '-flags', '+global_header',
+        '-strict', '-2',
+        '-f', `${opts.container || 'matroska'}`
     ]).videoFilters([
-        `setpts=${ratios.ptsRatio}*PTS,minterpolate`,
+        `setpts=${ratios.ptsRatio}*PTS`//,minterpolate=fps=50`,
     ])
-    .output('test.mkv')
+    .output(`${files.video}_noGlass.mkv`)
     .on('start', (cmd) => console.log(cmd))
     .on('progress', (prog) => console.log(prog))
     .run()

@@ -11,7 +11,14 @@ function parseCmd() {
       .option('-v, --video <video_path>', 'Specify video file', null)
       .option('-a, --audio <audio_path>', 'Specify audio file', null)
       .option('-f, --filter <filters>', 'Specify video filters. May be a single filter or a comma-separated list. (man ffmpeg for filters)', null)
+      .option('-g, --gpu', 'Enable GPU encode/decode of video', false)
+      .option('-c, --container <container_name>', 'Specify FFmpeg container name to output', 'matroska')
       .action(async () => {
+          const opts = {
+              gpu: program.gpu,
+              filters: program.filters,
+              container: program.container
+          }
           const [ videoDuration, audioDuration ] = await Promise.all([
               time(program.video),
               time(program.audio)
@@ -27,7 +34,7 @@ function parseCmd() {
               { durRatio, ptsRatio },
               { video: path.resolve(program.video), audio: path.resolve(program.audio) },
               videoFps,
-              program.filters
+              opts
           )
 
           console.log(ffmpegCmd)
