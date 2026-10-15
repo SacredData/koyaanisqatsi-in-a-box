@@ -1,15 +1,16 @@
 {
   "name": "koyaanisqatsi-in-a-box",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Retime a video to a music track so every picture cut lands on a beat",
+  "type": "module",
   "main": "index.js",
+  "bin": { "kib": "./index.js" },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": { "node": ">=22.4" },
+  "license": "MIT",
   "dependencies": {
-    "commander": "^2.19.0",
-    "fluent-ffmpeg": "^2.1.2"
+    "music-tempo": "^1.0.3"
   }
 }
